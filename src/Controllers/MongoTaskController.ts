@@ -43,8 +43,6 @@ export const deleteTask = async (req: Request, res: Response) => {
     const findTask: any = await Task.findOne({ _id: taskId });
     const checkIn = isUserOwner(req, findTask.userId.toString());
 
-    console.log(findTask.userId);
-
     if (findTask == undefined) {
       return res.send({ message: "This task doesn't exist on database" });
     }

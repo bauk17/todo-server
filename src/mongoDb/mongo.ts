@@ -10,6 +10,6 @@ export default function MongoConnection() {
       console.log("Mongo Database connected!");
     })
     .catch((err) => {
-      console.log(err);
+      console.log("Falha ao conectar: ", err);
     });
 }
