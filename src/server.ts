@@ -22,6 +22,6 @@ MongoConnection();
 
 SERVER.use(Routes);
 
-SERVER.listen(process.env.PORT || 4000, () => {
+SERVER.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running!`);
 });
