@@ -18,10 +18,10 @@ SERVER.use(cookieParser());
 
 SERVER.use(cors({ origin: "http://localhost:3000", credentials: true }));
 
-MongoConnection();
-
 SERVER.use(Routes);
 
 SERVER.listen(process.env.PORT || 3000, () => {
   console.log(`Server is running!`);
 });
+
+MongoConnection();
