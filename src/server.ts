@@ -15,7 +15,12 @@ SERVER.use(express.urlencoded({ extended: true }));
 
 SERVER.use(cookieParser());
 
-SERVER.use(cors({ origin: "http://localhost:3000", credentials: true }));
+SERVER.use(
+  cors({
+    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    credentials: true,
+  })
+);
 
 SERVER.use(Routes);
 
