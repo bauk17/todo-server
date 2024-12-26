@@ -60,7 +60,6 @@ Routes.put(
 
 Routes.get(
   "/check-auth",
-  verifyTokenMiddleware,
   (req: Request, res: Response) => {
     if (req.cookies.token) {
       res.status(200).send({ message: "Authenticated!" });
