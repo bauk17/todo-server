@@ -3,7 +3,6 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { Routes } from "./routes/Routes";
 import cookieParser from "cookie-parser";
-import mongoose from "mongoose";
 import MongoConnection from "./mongoDb/mongo";
 
 dotenv.config();
