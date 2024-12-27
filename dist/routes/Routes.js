@@ -52,7 +52,7 @@ exports.Routes.delete("/deleteTask/:taskId", JWTokenAuthenticate_1.verifyTokenMi
 exports.Routes.put("/changeTask/:taskId", JWTokenAuthenticate_1.verifyTokenMiddleware, MongoTaskController.updateTask);
 exports.Routes.get("/countCompletedTasks", JWTokenAuthenticate_1.verifyTokenMiddleware, MongoTaskController.countUserCompletedTasks);
 exports.Routes.put("/doneTask/:taskId", JWTokenAuthenticate_1.verifyTokenMiddleware, MongoTaskController.doneTask);
-exports.Routes.get("/check-auth", JWTokenAuthenticate_1.verifyTokenMiddleware, (req, res) => {
+exports.Routes.get("/check-auth", (req, res) => {
     if (req.cookies.token) {
         res.status(200).send({ message: "Authenticated!" });
     }
