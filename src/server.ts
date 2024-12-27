@@ -17,7 +17,7 @@ SERVER.use(cookieParser());
 
 SERVER.use(
   cors({
-    origin: process.env.CLIENT_URL || "http://localhost:3000",
+    origin: "https://todo-client-tan.vercel.app",
     credentials: true,
     methods: ["POST", "GET", "UPDATE", "DELETE"],
   })
