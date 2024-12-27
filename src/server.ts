@@ -14,14 +14,15 @@ SERVER.use(express.json());
 SERVER.use(express.urlencoded({ extended: true }));
 
 SERVER.use(cookieParser());
-/*
+
 SERVER.use(
   cors({
     origin: process.env.CLIENT_URL || "http://localhost:3000",
     credentials: true,
+    methods: ["POST", "GET", "UPDATE", "DELETE"],
   })
 );
-*/
+
 SERVER.use(Routes);
 
 SERVER.listen(process.env.PORT || 3000, () => {
