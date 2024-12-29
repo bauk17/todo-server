@@ -26,7 +26,12 @@ Routes.get(
 );
 
 Routes.post("/logout", verifyTokenMiddleware, (req: Request, res: Response) => {
-  res.clearCookie("token");
+  res.clearCookie("token", {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+    path: "/",
+  });
   res.status(200).send({ message: "User logged out successfully!" });
 });
 
@@ -58,13 +63,10 @@ Routes.put(
   MongoTaskController.doneTask
 );
 
-Routes.get(
-  "/check-auth",
-  (req: Request, res: Response) => {
-    if (req.cookies.token) {
-      res.status(200).send({ message: "Authenticated!" });
-    } else {
-      res.status(401).send({ error: "Unauthorized" });
-    }
+Routes.get("/check-auth", (req: Request, res: Response) => {
+  if (req.cookies.token) {
+    res.status(200).send({ message: "Authenticated!" });
+  } else {
+    res.status(401).send({ error: "Unauthorized" });
   }
-);
+});

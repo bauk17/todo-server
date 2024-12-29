@@ -42,7 +42,12 @@ exports.Routes.post("/createAccount", MongoUserController.CreateAccount);
 exports.Routes.post("/login", MongoUserController.UserAuthentication);
 exports.Routes.get("/userProfile", JWTokenAuthenticate_1.verifyTokenMiddleware, UserProfileController.getProfile);
 exports.Routes.post("/logout", JWTokenAuthenticate_1.verifyTokenMiddleware, (req, res) => {
-    res.clearCookie("token");
+    res.clearCookie("token", {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
+        path: "/",
+    });
     res.status(200).send({ message: "User logged out successfully!" });
 });
 // Task Management Mongo DB - Everything already working

@@ -15,9 +15,9 @@ SERVER.use(express.json());
 SERVER.use(express.urlencoded({ extended: true }));
 SERVER.use((0, cookie_parser_1.default)());
 SERVER.use((0, cors_1.default)({
-    origin: "https://todo-client-tan.vercel.app",
+    origin: ["https://todo-client-tan.vercel.app", "http://localhost:3000"],
     credentials: true,
-    methods: ["POST", "GET", "UPDATE", "DELETE"],
+    methods: ["POST", "GET", "UPDATE", "DELETE", "PUT"],
 }));
 SERVER.use(Routes_1.Routes);
 SERVER.listen(process.env.PORT || 4000, () => {
