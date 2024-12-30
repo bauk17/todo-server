@@ -25,7 +25,7 @@ Routes.get(
   UserProfileController.getProfile
 );
 
-Routes.post("/logout", verifyTokenMiddleware, (req: Request, res: Response) => {
+Routes.post("/logout", (req: Request, res: Response) => {
   res.clearCookie("token", {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
