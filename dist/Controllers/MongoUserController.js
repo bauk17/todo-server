@@ -19,19 +19,19 @@ const CreateAccount = async (req, res) => {
             return res.status(400).send({ message: "All fields are required" });
         }
         if (!emailRegex.test(email)) {
-            return res.send({ message: "E-mail inválido" });
+            return res.status(422).send({ message: "Invalid email format!" });
         }
         if (existingUser) {
             if (existingUser.email === email && existingUser.username === username) {
                 return res
-                    .status(400)
+                    .status(409)
                     .send({ message: "Email and Username already in use!" });
             }
             else if (existingUser.email === email) {
-                return res.status(400).send({ message: "Email already in use!" });
+                return res.status(409).send({ message: "Email already in use!" });
             }
             else if (existingUser.username === username) {
-                return res.status(400).send({ message: "Username already in use!" });
+                return res.status(409).send({ message: "Username already in use!" });
             }
         }
         const NewUser = await MongoUser_1.default.create({
